@@ -1,1 +1,46 @@
-﻿
+﻿.bg-green-theme {
+    background-color: #1F8A43;
+}
+
+@keyframes refletir {
+    0% {
+        transform: translate(-150%, -50%) rotate(45deg); /* Começa fora à esquerda */
+        opacity: 0; /* Invisível no início */
+    }
+
+    20% {
+        opacity: 1; /* Fica visível rapidamente */
+    }
+
+    80% {
+        opacity: 1; /* Mantém visível */
+    }
+
+    100% {
+        transform: translate(150%, -50%) rotate(45deg); /* Termina fora à direita */
+        opacity: 0; /* Fica invisível ao final */
+    }
+}
+
+.btn-reflexo {
+    position: relative;
+    overflow: hidden; /* Garante que nada apareça fora do botão */
+}
+
+    .btn-reflexo::before {
+        content: '';
+        position: absolute;
+        top: 50%; /* Centraliza verticalmente */
+        left: -150%; /* Começa fora da tela à esquerda */
+        width: 200%; /* O reflexo cobre o botão inteiro */
+        height: 100%;
+        background: rgba(255, 255, 255, 0.7); /* Cor do reflexo */
+        transform: rotate(45deg); /* Rotaciona para parecer um diamante */
+        animation: refletir 3s linear infinite; /* Animação suave */
+        z-index: 0; /* Fica atrás do texto do botão */
+    }
+
+button {
+    position: relative; /* Para que o ::before funcione corretamente */
+    z-index: 1; /* Para garantir que o texto do botão fique acima do reflexo */
+}
