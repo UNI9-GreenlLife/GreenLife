@@ -12,7 +12,7 @@ function App() {
                 </div>
 
                 {/* item 2 - navigation */}
-                <div className="text-white flex justify-around w-80 font-bold text-xl">
+                <div className="text-white flex justify-between w-96 text-xl">
                     <a href="#">Produtos</a>
                     <a href="#">Servicos</a>
                     <a href="#">Contato</a>
@@ -44,7 +44,7 @@ function App() {
                             <p>controle de ferias e beneficios e</p>
                             <p>automacao de recrutamento</p>
 
-                            <div className="flex justify-around mt-8">
+                            <div className="flex justify-around mt-12">
                                 <button className="bg-green-theme hover:bg-green-700 text-white btn-reflexo font-bold py-2 px-4 rounded">
                                     Comece agora
                                 </button>
