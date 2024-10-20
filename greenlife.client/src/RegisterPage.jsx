@@ -92,7 +92,7 @@ function RegisterPage() {
                     </motion.div>
 
                     <motion.button
-                        className="bg-black w-4/6 text-white font-bold hover:bg-neutral-700 py-2 px-4 rounded mt-12"
+                        className="bg-black w-4/6 text-white font-bold hover:bg-neutral-700 py-3 px-4 rounded-lg mt-12"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: 1 }}
