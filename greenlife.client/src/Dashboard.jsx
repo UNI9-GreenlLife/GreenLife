@@ -26,7 +26,7 @@ function Dashboard() {
     };
 
     return (
-        <div className="flex bg-zinc-950 min-h-screen bg-gradient-to-b from-green-800/20 to-transparent h-screen text-zinc-200">
+        <div className="flex bg-zinc-950 min-h-screen bg-gradient-to-b from-neutral-300/10 to-transparent h-screen text-zinc-200">
             <div className="flex flex-col justify-between bg-zinc-950 p-6 py-8">
                 <aside className="w-72">
                     <nav className="space-y-8">
@@ -57,7 +57,7 @@ function Dashboard() {
             </div>
 
             {/* Main Content */}
-            <main className="flex-1 p-6">
+            <main className="flex-1 p-10">
                 {renderContent()}
             </main>
         </div>
