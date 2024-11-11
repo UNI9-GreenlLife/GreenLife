@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreenLife.Server", "GreenLi
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "greenlife.client", "greenlife.client\greenlife.client.esproj", "{1F5B9C2C-D4BA-4677-9475-55298BFAE7C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenLife.Data", "GreenLife.Data\GreenLife.Data.csproj", "{80B0C76E-4E34-4F34-98BB-E76BF136EF44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreenLife.Data", "GreenLife.Data\GreenLife.Data.csproj", "{80B0C76E-4E34-4F34-98BB-E76BF136EF44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreeLife.Business", "GreeLife.Business\GreeLife.Business.csproj", "{949D6886-9D43-4D41-82BA-28B93C96AC2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreenLife.Business", "GreeLife.Business\GreenLife.Business.csproj", "{949D6886-9D43-4D41-82BA-28B93C96AC2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

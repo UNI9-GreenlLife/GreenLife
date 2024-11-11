@@ -8,9 +8,9 @@ namespace GreeLife.Business.Models
 {
     public class VacationModel : Entity
     {
-        //foreign key
         public int EmployeeId { get; set; }
+        public EmployeeModel Employee { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate{ get; set; }
+        public DateTime EndDate { get; set; }
     }
 }
