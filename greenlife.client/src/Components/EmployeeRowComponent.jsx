@@ -22,7 +22,7 @@ function EmployeeRowComponent({ employee, handleRowClick }) {
             >
                 {isActive ? "Ativo" : "Inativo"}
             </td>
-            </tr>
+        </tr>
     );
 }
 
