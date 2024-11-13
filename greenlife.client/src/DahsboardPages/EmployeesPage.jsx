@@ -1,12 +1,12 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import EmployeeTable from '../Components/EmployeeList.jsx';
 import Modal from 'react-modal';
 
-Modal.setAppElement('#root'); // Necess�rio para acessibilidade
+Modal.setAppElement('#root'); // Necessário para acessibilidade
 
 function EmployeesPage() {
-    const [empresa, setEmpresa] = useState("Logitech");
+    const [empresa] = useState("Logitech");
     const [employees] = useState([
         { id: 1, name: "Joao", position: "Backend Developer 1", department: "TI", isActive: true },
         { id: 2, name: "Maria", position: "Designer", department: "Marketing", isActive: false },
@@ -31,16 +31,16 @@ function EmployeesPage() {
         setModalIsOpen(false);
     };
 
-    // Defina a anima��o de entrada e sa�da para o modal
+    // Configuração da animação de entrada e saída do modal
     const animation = useSpring({
         opacity: modalIsOpen ? 1 : 0,
-        transform: modalIsOpen ? `translateY(0%)` : `translateY(-50%)`,
-        config: { tension: 200, friction: 20 },
+        transform: modalIsOpen ? 'translateY(0)' : 'translateY(-50px)',
+        config: { tension: 300, friction: 25 },
     });
 
     return (
         <div>
-            <h1 className="font-bold text-3xl mb-8">{empresa} - Lista de funcionarios</h1>
+            <h1 className="font-bold text-3xl mb-8">{empresa} - Lista de funcionários</h1>
             <EmployeeTable employeeList={employees} handleRowClick={handleRowClick} />
 
             {selectedEmployee && (
@@ -48,34 +48,33 @@ function EmployeesPage() {
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
                     className="fixed inset-0 flex items-center justify-center"
-                    overlayClassName="fixed inset-0 bg-neutral-800 bg-opacity-50"
+                    overlayClassName="fixed inset-0 bg-neutral-700 bg-opacity-50"
                     style={{ overlay: { zIndex: 1000 } }}
                 >
-                    {/* Use o componente `animated.div` para aplicar a anima��o */}
-                    <animated.div style={animation} className="bg-neutral-900 p-6 rounded-lg text-white w-2/5">
-                        <h2 className="font-bold mb-4 text-lg">Detalhes do Funcionario</h2>
+                    {/* Componente `animated.div` para aplicar a animação */}
+                    <animated.div style={animation} className="bg-neutral-900 p-6 rounded-lg shadow-lg text-white w-2/5">
+                        <div className="flex justify-between items-center mb-4">
+                            <h2 className="font-bold text-lg">Detalhes do Funcionário</h2>
+                            <button onClick={closeModal} className="text-gray-400 hover:text-gray-200">✖</button>
+                        </div>
                         <div className="bg-zinc-400 h-0.5 w-full mb-4 my-2"></div>
-                        <p className="mb-2 text-zinc-300">
-                            <strong className="text-white">Nome:</strong> {selectedEmployee.name}
+                        <p className="mb-4 text-zinc-300 flex items-center">
+                            <span className="mr-2">👤</span><p><strong className="text-white font-bold">Nome: </strong> {selectedEmployee.name}</p>
                         </p>
-                        <p className="mb-2 text-zinc-300">
-                            <strong className="text-white">Posicao:</strong> {selectedEmployee.position}
+                        <p className="mb-4 text-zinc-300 flex items-center">
+                            <span className="mr-2">💼</span><p><strong className="text-white font-bold">Posição: </strong> {selectedEmployee.position}</p>
                         </p>
-                        <p className="mb-2 text-zinc-300">
-                            <strong className="text-white">Departamento:</strong> {selectedEmployee.department}
+                        <p className="mb-4 text-zinc-300 flex items-center">
+                            <span className="mr-2">🏢</span><p><strong className="text-white font-bold">Departamento: </strong> {selectedEmployee.department}</p>
                         </p>
-                        <p className={`mb-4 ${selectedEmployee.isActive ? 'text-green-500' : 'text-red-500'}`}>
-                            <strong className="text-white">Status:</strong>{' '}
-                            {selectedEmployee.isActive ? 'Ativo' : 'Inativo'}
+                        <p className={`mb-4 flex items-center ${selectedEmployee.isActive ? 'text-green-500' : 'text-red-500'}`}>
+                            <span className="mr-2">{selectedEmployee.isActive ? '✔️' : '❌'}</span>
+                            <p><strong className="text-white font-bold">Status: </strong> {selectedEmployee.isActive ? "Ativo" : "Inativo"}</p>
                         </p>
 
-                        <div className="flex justify-between">
-                            <button className="px-6 py-2 bg-blue-700 text-white rounded mt-4" onClick={closeModal}>
-                                Editar
-                            </button>
-                            <button className="px-6 py-2 bg-red-700 text-white rounded mt-4" onClick={closeModal}>
-                                Fechar
-                            </button>
+                        <div className="flex justify-center gap-4">
+                            <button className="px-6 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 transition-colors">Editar</button>
+                            <button className="px-6 py-2 bg-red-700 text-white rounded hover:bg-red-800 transition-colors" onClick={closeModal}>Fechar</button>
                         </div>
                     </animated.div>
                 </Modal>
