@@ -8,6 +8,9 @@ namespace GreenLife.Server.Configuration
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<IVacationRepository, VacationRepository>();
+
 
             return services;
         }
