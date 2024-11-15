@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GreenLife.Data
+namespace GreenLife.Data.Repository
 {
     public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
     {
@@ -69,7 +69,7 @@ namespace GreenLife.Data
 
         public void Dispose()
         {
-            _ctx? .Dispose();
+            _ctx?.Dispose();
         }
     }
 }
