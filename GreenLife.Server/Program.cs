@@ -16,6 +16,14 @@ builder.Services.DbContextConfig(builder.Configuration);
 builder.Services.ResolveDependencies();
 builder.Services.AddAutoMapper(typeof(Program));
 
+builder.Services.AddCors(options => {
+    options.AddPolicy(name: "MyPolicy",
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:5173");
+        });
+});
+
 var app = builder.Build();
 
 
@@ -28,6 +36,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("MyPolicy");
 
 app.UseHttpsRedirection();
 

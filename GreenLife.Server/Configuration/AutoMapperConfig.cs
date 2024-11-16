@@ -11,7 +11,9 @@ namespace GreenLife.Server.Configuration
         {
             CreateMap<CompanyDTO, CompanyModel>()
                     /*.ForMember(dest => dest.Employees, opt => opt.Ignore())*/.ReverseMap(); // Ignorar se não for necessário no mapeamento
-                    //.ForMember(dest => dest.ApplicationUsers, opt => opt.Ignore()); // Ignorar também se não necessário
+                                                                                              //.ForMember(dest => dest.ApplicationUsers, opt => opt.Ignore()); // Ignorar também se não necessário
+
+            CreateMap<EmployeeModel, EmployeeDTO>().ReverseMap();
 
 
         }
