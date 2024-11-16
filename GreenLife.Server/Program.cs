@@ -20,8 +20,10 @@ builder.Services.AddCors(options => {
     options.AddPolicy(name: "MyPolicy",
         policy =>
         {
-            policy.WithOrigins("https://localhost:5173");
-        });
+            policy.WithOrigins("https://localhost:5173")
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
 });
 
 var app = builder.Build();

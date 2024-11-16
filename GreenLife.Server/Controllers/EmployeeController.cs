@@ -34,7 +34,7 @@ namespace GreenLife.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<EmployeeModel>> Insert(EmployeeDTO employeeDTO)
+        public async Task<ActionResult<EmployeeModel>> Insert(EmployeeInsertDTO employeeDTO)
         {
             var employee = _mapper.Map<EmployeeModel>(employeeDTO);
 
