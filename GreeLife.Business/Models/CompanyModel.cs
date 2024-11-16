@@ -14,5 +14,6 @@ namespace GreeLife.Business.Models
 
         // Propriedade de navegação para a relação "um para muitos"
         public ICollection<EmployeeModel> Employees { get; set; }
+
     }
 }

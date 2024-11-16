@@ -13,8 +13,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.DbContextConfig(builder.Configuration);
+builder.Services.ResolveDependencies();
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
+
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
