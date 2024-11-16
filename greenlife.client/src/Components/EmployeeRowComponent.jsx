@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Pencil, Trash2 } from 'lucide-react'
 
 function EmployeeRowComponent({ employee, handleRowClick }) {
     const [isActive, setIsActive] = useState(employee.isActive);
@@ -19,6 +20,9 @@ function EmployeeRowComponent({ employee, handleRowClick }) {
 
             <td className="py-4 px-4">{employee.position}</td>
             <td className="py-4 px-4">{employee.salary}</td>
+            <td><button className="bg-blue-400 p-2 text-neutral-800 rounded hover:bg-blue-500"><Pencil /></button></td>
+            <td><button className="bg-red-400 p-2 mx-4 text-neutral-800 rounded hover:bg-red-500"><Trash2 /></button></td>
+            
 
         </tr>
     );

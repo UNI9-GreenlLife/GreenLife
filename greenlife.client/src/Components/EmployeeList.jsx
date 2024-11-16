@@ -12,6 +12,9 @@ function EmployeeTable({ employeeList, handleRowClick }) {
                     
                     <th className="w-1/5 py-3 px-4 text-left font-bold text-sm">Posicao</th>
                     <th className="w-1/5 py-3 px-4 text-left font-bold text-sm">Salario</th>
+                    <th></th>
+                    <th></th>
+
 
                     </tr>
                 </thead>

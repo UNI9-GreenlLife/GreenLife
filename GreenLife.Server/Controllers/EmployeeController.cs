@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using GreeLife.Business.Models;
 using GreenLife.Server.DTO;
+using System.Runtime.InteropServices;
 
 namespace GreenLife.Server.Controllers
 {
@@ -40,9 +41,34 @@ namespace GreenLife.Server.Controllers
 
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
-            await _employeeService.Adicionar(employee);
+            await _employeeService.Adicionar(employee).ConfigureAwait(false);
 
             return CustomResponse(employee);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<EmployeeModel>> Update(EmployeeInsertDTO employeeDTO)
+        {
+            var employee = _mapper.Map<EmployeeModel>(employeeDTO);
+
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
+
+            await _employeeService.Atualizar(employee).ConfigureAwait(false);
+
+            return CustomResponse(employee);
+        }
+
+        public async Task<ActionResult<EmployeeModel>> Delete(int Id)
+        {
+            if (await _employeeRepository.GetById(Id) == null)
+            {
+                NotificarErro("Employee not found.");
+                return CustomResponse();
+            }
+
+            await _employeeRepository.Remove(Id).ConfigureAwait(false);
+
+            return CustomResponse("Employee removed");
         }
     }
 }
