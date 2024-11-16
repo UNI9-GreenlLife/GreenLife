@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { useSpring, animated } from "@react-spring/web";
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
+import { useSpring, animated } from "@react-spring/web";
 
-function RegisterEmployeeModal({ isOpen, onClose, setEmployees }) {
+function UpdateEmployeeModal({ isOpen, onClose, employee }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [position, setPosition] = useState("");
     const [salary, setSalary] = useState("");
     const [formErrors, setFormErrors] = useState([]);
-    const [successMessage, setSuccessMessage] = useState(""); // Estado para mensagem de sucesso
+    const [successMessage, setSuccessMessage] = useState("");
 
     const animation = useSpring({
         opacity: isOpen ? 1 : 0,
@@ -17,36 +17,40 @@ function RegisterEmployeeModal({ isOpen, onClose, setEmployees }) {
         config: { tension: 200, friction: 30 },
     });
 
+    useEffect(() => {
+        if (employee) {
+            setName(employee.name);
+            setEmail(employee.email);
+            setPhoneNumber(employee.phoneNumber);
+            setPosition(employee.position);
+            setSalary(employee.salary);
+        }
+    }, [employee]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const employeeData = { name, email, phoneNumber, position, salary, companyId: 1 };
+        const updatedEmployee = { id: employee.id, name, email, phoneNumber, position, salary, companyId: 1 };
 
         try {
             const response = await fetch("https://localhost:7100/api/Employee", {
-                method: "POST",
+                method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(employeeData),
+                body: JSON.stringify(updatedEmployee),
             });
 
             const data = await response.json();
+
             if (!data.success) {
-                setFormErrors(data.errors || ["Erro ao cadastrar funcionário."]);
+                setFormErrors(data.errors || ["Erro ao atualizar funcionário."]);
                 return;
             }
-
-            // Adicionando o objeto retornado pela API (data.data) à lista
-            setEmployees((prev) => [...prev, data.data]);
-            setSuccessMessage("Funcionario cadastrado com sucesso!"); // Define a mensagem de sucesso
+ 
+            setSuccessMessage("Funcionário atualizado com sucesso!");
             setTimeout(() => {
-                setSuccessMessage(""); // Limpa a mensagem após alguns segundos
-                setName("");
-                setEmail("");
-                setPhoneNumber("");
-                setName("");
-                setPosition("");
-                setSalary("");
-
+                setSuccessMessage("");
+                
                 onClose();
+                window.location.reload();
             }, 2000);
         } catch (error) {
             console.error("Erro:", error);
@@ -61,7 +65,7 @@ function RegisterEmployeeModal({ isOpen, onClose, setEmployees }) {
             overlayClassName="fixed inset-0 bg-neutral-800 bg-opacity-50"
         >
             <animated.div style={animation} className="bg-neutral-900 p-6 rounded-lg text-white w-2/5">
-                <h2 className="font-bold mb-4 text-xl">Cadastrar Funcionario</h2>
+                <h2 className="font-bold mb-4 text-xl">Atualizar Funcionario</h2>
                 <div className="bg-zinc-400 h-0.5 w-full mb-4 my-2"></div>
 
                 {successMessage && (
@@ -69,9 +73,17 @@ function RegisterEmployeeModal({ isOpen, onClose, setEmployees }) {
                         {successMessage}
                     </div>
                 )}
+                {formErrors.length > 0 && (
+                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                        <ul>
+                            {formErrors.map((error, index) => (
+                                <li key={index}>{error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
                 <form onSubmit={handleSubmit}>
-                    <label className="block mb-2">
-                        Nome:
+                    <label className="block mb-2">Nome:
                         <input
                             type="text"
                             name="name"
@@ -81,8 +93,7 @@ function RegisterEmployeeModal({ isOpen, onClose, setEmployees }) {
                             required
                         />
                     </label>
-                    <label className="block mb-2">
-                        Email:
+                    <label className="block mb-2">Email:
                         <input
                             type="email"
                             name="email"
@@ -92,8 +103,7 @@ function RegisterEmployeeModal({ isOpen, onClose, setEmployees }) {
                             required
                         />
                     </label>
-                    <label className="block mb-2">
-                        Telefone:
+                    <label className="block mb-2">Telefone:
                         <input
                             type="tel"
                             name="phoneNumber"
@@ -103,8 +113,7 @@ function RegisterEmployeeModal({ isOpen, onClose, setEmployees }) {
                             required
                         />
                     </label>
-                    <label className="block mb-2">
-                        Cargo:
+                    <label className="block mb-2">Cargo:
                         <input
                             type="text"
                             name="position"
@@ -114,8 +123,7 @@ function RegisterEmployeeModal({ isOpen, onClose, setEmployees }) {
                             required
                         />
                     </label>
-                    <label className="block mb-2">
-                        Salario:
+                    <label className="block mb-2">Salario:
                         <input
                             type="number"
                             name="salary"
@@ -125,24 +133,12 @@ function RegisterEmployeeModal({ isOpen, onClose, setEmployees }) {
                             required
                         />
                     </label>
-                    {formErrors.length > 0 && (
-                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-                            <ul>
-                                {formErrors.map((error, index) => (
-                                    <li key={index}>{error}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
 
                     <div className="flex justify-between">
                         <button type="submit" className="px-6 py-2 bg-green-700 text-white rounded mt-4">
-                            Cadastrar
+                            Atualizar
                         </button>
-                        <button
-                            className="px-6 py-2 bg-red-700 text-white rounded mt-4"
-                            onClick={onClose}
-                        >
+                        <button className="px-6 py-2 bg-red-700 text-white rounded mt-4" onClick={onClose}>
                             Cancelar
                         </button>
                     </div>
@@ -152,4 +148,4 @@ function RegisterEmployeeModal({ isOpen, onClose, setEmployees }) {
     );
 }
 
-export default RegisterEmployeeModal;
+export default UpdateEmployeeModal;

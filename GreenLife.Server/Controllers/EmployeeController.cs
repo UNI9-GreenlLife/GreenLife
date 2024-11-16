@@ -43,21 +43,25 @@ namespace GreenLife.Server.Controllers
 
             await _employeeService.Adicionar(employee).ConfigureAwait(false);
 
+            Thread.Sleep(2000);
+
             return CustomResponse(employee);
         }
 
         [HttpPut]
-        public async Task<ActionResult<EmployeeModel>> Update(EmployeeInsertDTO employeeDTO)
+        public async Task<ActionResult<EmployeeModel>> Update(EmployeeDTO employeeDTO)
         {
             var employee = _mapper.Map<EmployeeModel>(employeeDTO);
 
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
             await _employeeService.Atualizar(employee).ConfigureAwait(false);
+            Thread.Sleep(2000);
 
             return CustomResponse(employee);
         }
 
+        [HttpDelete]
         public async Task<ActionResult<EmployeeModel>> Delete(int Id)
         {
             if (await _employeeRepository.GetById(Id) == null)
@@ -67,6 +71,7 @@ namespace GreenLife.Server.Controllers
             }
 
             await _employeeRepository.Remove(Id).ConfigureAwait(false);
+            Thread.Sleep(2000);
 
             return CustomResponse("Employee removed");
         }

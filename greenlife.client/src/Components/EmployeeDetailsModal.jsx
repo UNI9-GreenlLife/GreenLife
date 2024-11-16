@@ -18,7 +18,7 @@ function EmployeeDetailsModal({ isOpen, onClose, employee }) {
             overlayClassName="fixed inset-0 bg-neutral-800 bg-opacity-50"
         >
             <animated.div style={animation} className="bg-neutral-900 p-6 rounded-lg text-white w-2/5">
-                <h2 className="font-bold mb-4 text-lg">Detalhes do Funcionario</h2>
+                <h2 className="font-bold mb-4 text-xl">Detalhes do Funcionario</h2>
                 <div className="bg-zinc-400 h-0.5 w-full mb-4 my-2"></div>
                 <p className="mb-2 text-zinc-300"><strong>Nome:</strong> {employee.name}</p>
                 <p className="mb-2 text-zinc-300"><strong>Email:</strong> {employee.email}</p>

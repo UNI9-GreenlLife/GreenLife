@@ -30,7 +30,7 @@ namespace GreenLife.Business.Services
         {
             if (!ExecutarValidacao(new EmployeeValidation(), employee)) return;
 
-            if (_employeeRepository.Search(e => e.Id == employee.Id).Result.Any())
+            if (!_employeeRepository.Search(e => e.Id == employee.Id).Result.Any())
             {
                 Notificar("Employee not found.");
                 return;
