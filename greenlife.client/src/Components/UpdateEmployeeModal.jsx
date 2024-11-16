@@ -41,11 +41,11 @@ function UpdateEmployeeModal({ isOpen, onClose, employee }) {
             const data = await response.json();
 
             if (!data.success) {
-                setFormErrors(data.errors || ["Erro ao atualizar funcionário."]);
+                setFormErrors(data.errors || ["Erro ao atualizar funcionario."]);
                 return;
             }
  
-            setSuccessMessage("Funcionário atualizado com sucesso!");
+            setSuccessMessage("Funcionario atualizado com sucesso!");
             setTimeout(() => {
                 setSuccessMessage("");
                 

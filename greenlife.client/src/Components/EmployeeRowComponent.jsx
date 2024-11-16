@@ -97,7 +97,7 @@ function EmployeeRowComponent({ employee, handleRowClick, setEmployees }) {
                 <td><button className="bg-blue-400 p-2 text-neutral-800 rounded hover:bg-blue-500" onClick={openUpdateModal}><Pencil /></button></td>
                 <td>
                     <button
-                        className="bg-red-400 p-2 mx-4 text-neutral-800 rounded hover:bg-red-500"
+                        className="bg-red-400 p-2 text-neutral-800 rounded hover:bg-red-500"
                         onClick={openModal}
                     >
                         <Trash2 />
