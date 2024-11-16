@@ -14,14 +14,12 @@ function EmployeeRowComponent({ employee, handleRowClick }) {
             className="bg-neutral-800 border-b border-neutral-800 border-neutral-600 transition duration-300 ease-in-out hover:bg-neutral-700 cursor-pointer"
         >
             <td className="py-4 px-4">{employee.name}</td>
+            <td className="py-4 px-4">{employee.email}</td>
+            <td className="py-4 px-4">{employee.phoneNumber}</td>
+
             <td className="py-4 px-4">{employee.position}</td>
-            <td className="py-4 px-4">{employee.department}</td>
-            <td
-                onClick={toggleStatus}
-                className={`py-4 px-4 ${isActive ? 'text-green-500' : 'text-red-500'}`}
-            >
-                {isActive ? "Ativo" : "Inativo"}
-            </td>
+            <td className="py-4 px-4">{employee.salary}</td>
+
         </tr>
     );
 }
