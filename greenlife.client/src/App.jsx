@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
 import './App.css';
 import logo from './assets/GreenLife-logo-black-theme.png';
+import { Link } from 'react-router-dom';  // Importando Link para navegação
 
 function App() {
     return (
@@ -23,9 +23,11 @@ function App() {
                     <button className="bg-black text-white font-bold py-2 px-4 border border-white rounded hover:bg-gray-800">
                         Login
                     </button>
-                    <button className="bg-green-theme hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                        Registrar
-                    </button>
+                    <Link to="/register">
+                        <button className="bg-green-theme hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                            Registrar
+                        </button>
+                    </Link>
                 </nav>
             </header>
 
@@ -45,9 +47,11 @@ function App() {
                             <p>automacao de recrutamento</p>
 
                             <div className="flex justify-around mt-12">
-                                <button className="bg-green-theme hover:bg-green-700 text-white btn-reflexo font-bold py-2 px-4 rounded">
-                                    Comece agora
-                                </button>
+                                <Link to="/register">
+                                    <button className="bg-green-theme hover:bg-green-700 text-white btn-reflexo font-bold py-2 px-4 rounded">
+                                        Comece agora
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -91,11 +95,7 @@ function App() {
                 </div>
             </footer>
         </div>
-
-
-
-     
-    );  
+    );
 }
 
 export default App;

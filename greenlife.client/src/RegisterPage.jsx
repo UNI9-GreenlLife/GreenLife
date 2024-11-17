@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import logo from './assets/GreenLife-logo-white-theme.png';
 import backIcon from './assets/left-arrow.svg';
@@ -12,10 +12,13 @@ function RegisterPage() {
                     <img className="w-full h-full object-cover" src={logo} alt="Logo" />
                 </div>
                 <div className="flex items-center ml-32">
-                    <img src={backIcon} alt="Voltar" className="w-6 h-6 mr-2" />
-                    <p className="font-bold text-xl mb-1"> voltar</p>
+                    <Link to="/">
+                        <img src={backIcon} alt="Voltar" className="w-6 h-6 mr-2" />
+                        <p className="font-bold text-xl mb-1">Voltar</p>
+                    </Link>
                 </div>
             </div>
+
 
             <div className="flex items-center">
                 <div className="flex flex-col items-center">
