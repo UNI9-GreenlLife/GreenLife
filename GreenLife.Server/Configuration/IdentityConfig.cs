@@ -2,6 +2,7 @@
 using GreenLife.Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -11,13 +12,17 @@ namespace GreenLife.Server.Configuration
     {
         public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
+            // Configuração do DbContext para Identity
+            services.AddDbContext<IdentityApplicationDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            // Configuração do Identity
             services.AddIdentity<ApplicationUser, IdentityRole<int>>()
                 .AddRoles<IdentityRole<int>>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<IdentityApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            //JWT
-
+            // Configuração do JWT
             var appSettingsSection = configuration.GetSection("IdentitySettings");
             services.Configure<IdentitySettingsModel>(appSettingsSection);
 
@@ -28,7 +33,6 @@ namespace GreenLife.Server.Configuration
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
             }).AddJwtBearer(x =>
             {
                 x.RequireHttpsMetadata = true;
@@ -41,12 +45,11 @@ namespace GreenLife.Server.Configuration
                     ValidateAudience = true,
                     ValidAudience = identitySettings.ValidIn,
                     ValidIssuer = identitySettings.Sender,
-
                 };
             });
 
-
             return services;
         }
+
     }
 }

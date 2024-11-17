@@ -12,5 +12,14 @@ namespace GreenLife.Server.Configuration
                     options.UseSqlServer(configuration.GetConnectionString("defaultConnection")));
 
         }
+
+
+        public static void IdentityDbContextConfig(this IServiceCollection services, IConfiguration configuration)
+        {
+
+            services.AddDbContext<IdentityApplicationDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("defaultConnection")));
+
+        }
     }
 }
