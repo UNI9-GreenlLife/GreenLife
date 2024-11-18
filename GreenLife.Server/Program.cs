@@ -13,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.DbContextConfig(builder.Configuration);
+builder.Services.IdentityDbContextConfig(builder.Configuration);
+
 builder.Services.ResolveDependencies();
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -26,13 +28,15 @@ builder.Services.AddCors(options => {
 });
 });
 
+builder.Services.AddIdentityConfiguration(builder.Configuration);
+
 var app = builder.Build();
 
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline.s
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -43,6 +47,7 @@ app.UseCors("MyPolicy");
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
