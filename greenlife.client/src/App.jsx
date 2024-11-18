@@ -20,9 +20,12 @@ function App() {
 
                 {/* item 3 - buttons */}
                 <nav className="flex justify-around w-60">
+
+                    <Link to="/login">
                     <button className="bg-black text-white font-bold py-2 px-4 border border-white rounded hover:bg-gray-800">
                         Login
-                    </button>
+                        </button>
+                    </Link>
                     <Link to="/register">
                         <button className="bg-green-theme hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                             Registrar
@@ -35,7 +38,7 @@ function App() {
             <div className="w-full flex justify-around bg-black items-center py-44 flex-grow">
                 <div className="w-4/5">
                     <div className="flex py-12 md:py-24 items-center justify-between w-full">
-                        <div className="font-bold text-white text-6xl md:text-8xl">
+                        <div className="font-bold text-white text-6xl md:text-5xl">
                             <p>Otimize a gestao de</p>
                             <p>pessoas com</p>
                             <p>eficiencia e precisao</p>
