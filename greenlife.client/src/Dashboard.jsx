@@ -1,8 +1,10 @@
-import { Home, Users, CircleHelp } from 'lucide-react'
+import { Home, Users, User, CircleHelp } from 'lucide-react'
 import { useState } from 'react';
 import HomePage from './DahsBoardPages/HomePage.jsx'
 import EmployeesPage from './DahsBoardPages/EmployeesPage.jsx'
 import HelpPage from './DahsBoardPages/HelpPage.jsx'
+import UserPage from './DahsBoardPages/UserPage.jsx'
+
 
 // Componentes para cada página do dashboard
 
@@ -16,6 +18,8 @@ function Dashboard() {
         switch (currentPage) {
             case 'home':
                 return <HomePage />;
+            case 'user':
+                return <UserPage />;
             case 'employees':
                 return <EmployeesPage />;
             case 'help':
@@ -36,6 +40,13 @@ function Dashboard() {
                             onClick={() => setCurrentPage('home')}
                         >
                             <Home /> Home
+                        </a>
+                        <a
+                            href="#"
+                            className="flex items-center gap-4 font-bold text-zinc-200 hover:text-zinc-300"
+                            onClick={() => setCurrentPage('user')}
+                        >
+                            <User /> User
                         </a>
                         <a
                             href="#"
