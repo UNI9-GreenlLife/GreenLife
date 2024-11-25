@@ -56,9 +56,13 @@ function LoginPage() {
             });
 
             const data = await response.json();
+            console.log('Response:', response);
+            console.log('Response Data:', data); // Adicionando logs para verificar a resposta do servidor
 
             if (response.ok && data.success) {
-                localStorage.setItem('jwt', data.token);
+                console.log('Token Received:', data.data); // Verificando se o token está presente na resposta
+                localStorage.setItem('jwt', data.data);
+                console.log('Token Stored in localStorage:', localStorage.getItem('jwt'));
                 navigate('/dashboard');
             } else if (data.errors) {
                 setSubmitError('Erro ao fazer login. Verifique as credenciais.');
@@ -69,6 +73,7 @@ function LoginPage() {
             setSubmitError('Erro ao conectar com o servidor.');
         }
     };
+
 
     return (
         <div className="flex w-screen h-screen justify-around">

@@ -3,6 +3,7 @@ import logo from './assets/GreenLife-logo-black-theme.png';
 import { Link } from 'react-router-dom';  // Importando Link para navegação
 
 function App() {
+    localStorage.clear()
     return (
         <div className="min-h-screen flex flex-col">
             <header className="bg-black w-full h-32 flex justify-around items-center shadow-[0_4px_10px_rgba(255,255,255,0.4)]">
@@ -22,7 +23,7 @@ function App() {
                 <nav className="flex justify-around w-60">
 
                     <Link to="/login">
-                    <button className="bg-black text-white font-bold py-2 px-4 border border-white rounded hover:bg-gray-800">
+                        <button className="bg-black text-white font-bold py-2 px-4 border border-white rounded hover:bg-gray-800">
                         Login
                         </button>
                     </Link>
