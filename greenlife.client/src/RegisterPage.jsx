@@ -35,10 +35,15 @@ function RegisterPage() {
         if (name === 'password') {
             if (!value) error = 'O campo Senha e obrigatorio.';
             else if (value.length < 6) error = 'A Senha deve ter no minimo 6 caracteres.';
+            else if (!/[^a-zA-Z0-9]/.test(formData.password)) error = 'A senha deve conter pelo menos um caractere especial.';
+            else if (!/(?=.*[a-z])(?=.*[A-Z])/.test(formData.password)) error = 'A senha deve conter letras maiusculas e minusculas.';
+            else if (!/\d/.test(formData.password)) error = 'A senha deve conter pelo menos um numero.';
+
         }
 
         if (name === 'confirmPassword') {
             if (!value) error = 'O campo Confirmar Senha e obrigatorio.';
+
             else if (value !== formData.password) error = 'As senhas nao coincidem.';
         }
 
@@ -139,7 +144,7 @@ function RegisterPage() {
                             {field === 'confirmPassword' ? 'Confirmar Senha' : field.charAt(0).toUpperCase() + field.slice(1)}
                         </label>
                         <input
-                            type={field.includes('password') ? 'password' : 'text'}
+                            type={field.includes('password', 'confirmPassword') ? 'password' : 'text'}
                             id={field}
                             name={field}
                             value={formData[field]}
