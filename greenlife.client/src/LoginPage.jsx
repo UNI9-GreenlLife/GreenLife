@@ -60,7 +60,7 @@ function LoginPage() {
             console.log('Response Data:', data); // Adicionando logs para verificar a resposta do servidor
 
             if (response.ok && data.success) {
-                console.log('Token Received:', data.data); // Verificando se o token est� presente na resposta
+                console.log('Token Received:', data.data); // Verificando se o token está presente na resposta
                 localStorage.setItem('jwt', data.data);
                 console.log('Token Stored in localStorage:', localStorage.getItem('jwt'));
                 navigate('/dashboard');
@@ -97,7 +97,7 @@ function LoginPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        Faca seu login
+                        Faça seu login
                     </motion.h1>
 
                     {submitError && <p className="text-red-500 mt-4">{submitError}</p>}
