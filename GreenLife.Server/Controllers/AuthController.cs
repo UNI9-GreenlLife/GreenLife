@@ -85,6 +85,8 @@ namespace GreenLife.Server.Controllers
                 return CustomResponse(loginUser);
             }
 
+            NotificarErro("User or Password invalid");
+            return CustomResponse(loginUser);
         }
 
 
