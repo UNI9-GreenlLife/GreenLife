@@ -14,8 +14,7 @@ namespace GreenLife.Data.Repository
     {
 
         public EmployeeRepository(ApplicationDbContext context) : base(context)
-        {
-            
+        {  
         }
         public async Task<IEnumerable<EmployeeModel>> GetEmployeesByCompanyId(int companyId)
         {

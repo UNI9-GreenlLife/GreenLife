@@ -11,8 +11,6 @@ namespace GreeLife.Business.Models
         public string Name { get; set; }
         public string Document { get; set; }
         public DateTime CreateDate { get; set; }
-
-        // Propriedade de navegação para a relação "um para muitos"
         public ICollection<EmployeeModel> Employees { get; set; }
 
     }
