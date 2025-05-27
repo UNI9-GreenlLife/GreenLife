@@ -12,7 +12,7 @@ function RegisterPage() {
         email: '',
         password: '',
         confirmPassword: '',
-        companyId: 1, // Valor fixo, altere conforme necessário
+        companyId: 1,
     });
     const [errors, setErrors] = useState({});
     const [submitError, setSubmitError] = useState('');
@@ -54,7 +54,6 @@ function RegisterPage() {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
 
-        // Valida o campo em tempo real
         setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
     };
 
@@ -72,8 +71,7 @@ function RegisterPage() {
             setErrors(validationErrors);
             return;
         }
-
-        // Consome a API se não houver erros
+        
         try {
             const response = await fetch('https://localhost:7100/api/account/register', {
                 method: 'POST',
@@ -86,14 +84,14 @@ function RegisterPage() {
             const data = await response.json();
 
             if (response.ok && data.success) {
-                localStorage.setItem('jwt', data.data); // Salva o token no localStorage
-                navigate('/dashboard'); // Redireciona para o dashboard
+                localStorage.setItem('jwt', data.data); 
+                navigate('/dashboard'); 
             } else if (data.errors) {
                 const apiErrors = {};
                 for (const key in data.errors) {
                     apiErrors[key] = data.errors[key][0];
                 }
-                setErrors(apiErrors); // Atualiza erros específicos vindos do servidor
+                setErrors(apiErrors); 
             } else {
                 setSubmitError('Erro ao registrar. Tente novamente.');
             }
