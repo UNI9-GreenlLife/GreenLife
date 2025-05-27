@@ -13,21 +13,25 @@ namespace GreenLife.Business.Services
     public class CompanyService : BaseService, ICompanyService
     {
         private readonly ICompanyRepository _companyRepository;
-        public CompanyService(INotificator notificator, ICompanyRepository companyRepository) : base(notificator)
+
+        public CompanyService(INotificator notificator, ICompanyRepository companyRepository)
+            : base(notificator)
         {
             _companyRepository = companyRepository;
         }
 
         public async Task Adicionar(CompanyModel company)
         {
-            if (!ExecutarValidacao(new CompanyValidation(), company)) return;
+            if (!ExecutarValidacao(new CompanyValidation(), company))
+                return;
 
             await _companyRepository.Create(company);
         }
 
         public async Task Atualizar(CompanyModel company)
         {
-            if (!ExecutarValidacao(new CompanyValidation(), company)) return;
+            if (!ExecutarValidacao(new CompanyValidation(), company))
+                return;
 
             if (_companyRepository.Search(c => c.Id == company.Id).Result.Any())
             {

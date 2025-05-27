@@ -126,31 +126,6 @@ namespace GreenLife.Server.Controllers
             return encodedToken;
         }
 
-        [HttpGet("user")]
-        [Authorize] // Garante que o usuário esteja autenticado
-        public async Task<IActionResult> GetUserDetails()
-        {
-            // Recupera o ID do usuário a partir do token JWT
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (string.IsNullOrEmpty(userId))
-                return Unauthorized("Usuário não encontrado.");
-
-            // Busca os dados do usuário no banco
-            var user = await _userManager.FindByIdAsync(userId);
-
-            if (user == null)
-                return NotFound("Usuário não encontrado.");
-
-            // Retorna os dados do usuário, adaptados para o front
-            return Ok(new
-            {
-                Id = user.Id,
-                Email = user.Email,
-                UserName = user.Name,
-                // Adicione mais propriedades, se necessário
-            });
-        }
 
         private static long ToUnixEpochDate(DateTime date)
             => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, offset: TimeSpan.Zero)).TotalSeconds);

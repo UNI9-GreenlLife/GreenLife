@@ -12,9 +12,10 @@ namespace GreenLife.Business.Services
 {
     public class EmployeeService : BaseService, IEmployeeService
     {
-
         private readonly IEmployeeRepository _employeeRepository;
-        public EmployeeService(INotificator notificator, IEmployeeRepository employeeRepository) : base(notificator)
+
+        public EmployeeService(INotificator notificator, IEmployeeRepository employeeRepository)
+            : base(notificator)
         {
             _employeeRepository = employeeRepository;
         }
@@ -35,6 +36,7 @@ namespace GreenLife.Business.Services
                 Notificar("Employee not found.");
                 return;
             }
+
             _employeeRepository.Update(employee);
         }
 

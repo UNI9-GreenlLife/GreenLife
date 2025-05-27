@@ -12,16 +12,12 @@ namespace GreenLife.Business.Services
 {
     public abstract class BaseService
     {
-
         private readonly INotificator _notificator;
-
 
         protected BaseService(INotificator notificator)
         {
             _notificator = notificator;
         }
-
-
 
         protected void Notificar(FluentValidation.Results.ValidationResult validationResult)
         {
@@ -31,16 +27,14 @@ namespace GreenLife.Business.Services
             }
         }
 
-
-
         protected void Notificar(string mensagem)
         {
             _notificator.Handle(new Notification(mensagem));
         }
 
-
-
-        public bool ExecutarValidacao<TV, TE>(TV validacao, TE entidade) where TV : AbstractValidator<TE> where TE : Entity
+        public bool ExecutarValidacao<TV, TE>(TV validacao, TE entidade)
+            where TV : AbstractValidator<TE>
+            where TE : Entity
         {
             var validator = validacao.Validate(entidade);
 
