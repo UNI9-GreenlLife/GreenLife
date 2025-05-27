@@ -85,8 +85,6 @@ namespace GreenLife.Server.Controllers
                 return CustomResponse(loginUser);
             }
 
-            NotificarErro("User or Password invalid");
-            return CustomResponse(loginUser);
         }
 
 
@@ -125,7 +123,27 @@ namespace GreenLife.Server.Controllers
             var encodedToken = tokenHandler.WriteToken(token);
             return encodedToken;
         }
+        [HttpGet("user")]
+        [Authorize]
+        public async Task<IActionResult> GetUserDetails()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("Usuário não encontrado.");
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+                return NotFound("Usuário não encontrado.");
+
+            return Ok(new
+            {
+                Id = user.Id,
+                Email = user.Email,
+                UserName = user.Name,
+            });
+        }
 
         private static long ToUnixEpochDate(DateTime date)
             => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, offset: TimeSpan.Zero)).TotalSeconds);
