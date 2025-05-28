@@ -6,14 +6,11 @@ import HelpPage from './DahsBoardPages/HelpPage.jsx'
 import UserPage from './DahsBoardPages/UserPage.jsx'
 
 
-// Componentes para cada página do dashboard
-
 
 function Dashboard() {
-    // State para controlar a página atual
+
     const [currentPage, setCurrentPage] = useState('home');
 
-    // Função que renderiza o componente com base no estado
     const renderContent = () => {
         switch (currentPage) {
             case 'home':
@@ -67,7 +64,6 @@ function Dashboard() {
                 <p className="text-zinc-600 text-lg"> &copy; Greenlife Co.</p>
             </div>
 
-            {/* Main Content */}
             <main className="flex-1 p-10">
                 {renderContent()}
             </main>

@@ -57,10 +57,10 @@ function LoginPage() {
 
             const data = await response.json();
             console.log('Response:', response);
-            console.log('Response Data:', data); // Adicionando logs para verificar a resposta do servidor
+            console.log('Response Data:', data);
 
             if (response.ok && data.success) {
-                console.log('Token Received:', data.data); // Verificando se o token está presente na resposta
+                console.log('Token Received:', data.data);
                 localStorage.setItem('jwt', data.data);
                 console.log('Token Stored in localStorage:', localStorage.getItem('jwt'));
                 navigate('/dashboard');
